@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 import AddTodo from './components/AddTodo'
 import Todos from './components/Todos'
 
 function App() {
-  const [count, setCount] = useState(0)
+ const [update, setUpdate] = useState(false);
+const [updateId, setUpdateId] = useState(null);
 
   return (
     <>
      <h1>Redux toolkit</h1>
-      <AddTodo />
-      <Todos />
+      <AddTodo update ={ update} updateId= {updateId} setUpdate = {setUpdate} setUpdateId = {setUpdateId}/>
+      <Todos setUpdate = {setUpdate} setUpdateId = {setUpdateId} />
     </>
   )
 }

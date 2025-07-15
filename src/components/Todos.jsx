@@ -1,10 +1,13 @@
 import { useSelector, useDispatch } from "react-redux"
-import { removeTodo } from "../features/todo/todoSlice";
-removeTodo
-function Todos(){
+import { removeTodo, updateTodo } from "../features/todo/todoSlice";
+
+
+
+function Todos({setUpdate, setUpdateId}){
    const todoArr = useSelector( (state)=> state.todos );
    const dispatch = useDispatch();
 
+ 
     return (
     <>
     <div>Todos</div>
@@ -15,9 +18,21 @@ function Todos(){
             key={todo.id}
           >
             <div className='text-white'>{todo.text}</div>
+
+          <div className="items-center max-h-full">
+          {/* update  */}
+            <button 
+            className="border text-white mx-1  px-4 p-1 pt-2 hover:bg-red-600 rounded text-md"
+            onClick={()=>{
+              setUpdate(true)
+              setUpdateId(todo.id)
+            }}> 
+            Update 
+            </button>
+            
             <button
              onClick={() => dispatch(removeTodo(todo.id))}
-              className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
+              className="text-white mt-2 mx-1 p-1.5 pb-2.5 bg-red-500 border-0  px-4 focus:outline-none hover:bg-red-600 rounded text-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +49,10 @@ function Todos(){
                 />
               </svg>
             </button>
+
+          </div>
+
+        
           </li>
         ))}
       </ul>
